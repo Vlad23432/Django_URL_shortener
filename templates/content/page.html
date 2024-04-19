@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ page.name }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Вы находитесь на странице {{ page.name }}, 
         <a href="{{ page.url }}">ссылка на эту страницу</a></h1>
-</body>
-</html>
+{% endblock %}
