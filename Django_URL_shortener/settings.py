@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'content.apps.ContentConfig',  # регистрирую созданное приложение
     'mptt',  # регистрирую установленную библиотеку
+    'tinymce',  # регистрирую установленный текстовый редактор
 ]
 
 MIDDLEWARE = [
