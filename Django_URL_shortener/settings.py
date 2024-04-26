@@ -138,3 +138,19 @@ MEDIA_ROOT = BASE_DIR / 'production_media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TINYMCE_JS_URL = 'http://cdn.tiny.cloud/1/dddd/tinymce/6/tinymce.min.js'
+TINYMCE_DEFAULT_CONFIG = {
+    "height": "40vh",
+    "width": "100%",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
+    "fullscreen insertdatetime media table paste code help wordcount spellchecker",
+    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+    "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment code",
+    "custom_undo_redo_levels": 50,
+    "language": "ru",  # To force a specific language instead of the Django current language.
+}

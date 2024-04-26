@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Page
-from mptt.admin import DraggableMPTTAdmin
+from .models import Page, Text
+from mptt.admin import DraggableMPTTAdmin, TreeRelatedFieldListFilter
 
 
 # Register your models here.
@@ -11,5 +11,15 @@ class PageAdmin(DraggableMPTTAdmin):  # создаем конфигурацию 
 	list_filter = ("active",)  # по каким полям делать сортировку в админке
 	list_display_links = ("indented_title",)
 	prepopulated_fields = {"url": ('name', )}  # url страницы пишется на основе названия страницы
+
+
+@admin.register(Text)
+class TextAdmin(admin.ModelAdmin):
+	list_display = ("name", "title", "date_create", "date_update", "page_id",)
+	list_filter = (
+		("page_id", TreeRelatedFieldListFilter,),
+	)
+	list_editable = ("title",)  # добавляю возможность изменять title не заходя в сам текст в админ.панели
+
 
 

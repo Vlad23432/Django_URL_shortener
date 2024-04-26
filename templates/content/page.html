@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Вы находитесь на странице {{ page.name }}, 
-        <a href="{{ page.url }}">ссылка на эту страницу</a></h1>
+    {{ text.full_text|safe }}
 {% endblock %}
