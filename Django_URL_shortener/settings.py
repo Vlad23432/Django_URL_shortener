@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'content.apps.ContentConfig',  # регистрирую созданное приложение
+    'shortener.apps.ShortenerConfig',
     'mptt',  # регистрирую установленную библиотеку
     'tinymce',  # регистрирую установленный текстовый редактор
 ]
