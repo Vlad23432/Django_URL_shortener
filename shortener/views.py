@@ -1,5 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Links, Clicks
+from .forms import CreateUrlForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+import hashlib
+import string
+
 # Create your views here.
 
 
@@ -19,3 +25,20 @@ def redirect_url(request, short_url):
 	click.save()
 	return redirect(url.original_url)
 
+
+@login_required
+def create_short_link(request, user):
+	form = CreateUrlForm(request.method.POST)
+	user = request.user
+	if form.is_valid():
+		name = form.name
+		or_url = form.original_url
+	return render(request, 'create-link.html', {'form': form})
+
+def generate_short_url(username, full_url):
+	hash_str = hashlib.sha256((username + full_url).encode('utf-8')).hexdigest()
+	short_url = ''
+	for i in range(7):
+		short_url += string.digits + string.ascii_letters[int(hash_str[i * 2:i * 2 + 2], 16) % len(string.digits + string.ascii_letters)]
+
+		return short_url
