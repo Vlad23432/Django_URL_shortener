@@ -27,8 +27,8 @@ def redirect_url(request, short_url):
 
 
 @login_required
-def create_short_link(request, user):
-	form = CreateUrlForm(request.method.POST)
+def create_short_link(request):
+	form = CreateUrlForm(request.POST)
 	user = request.user
 	if form.is_valid():
 		name = form.name
