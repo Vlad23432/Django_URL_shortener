@@ -31,8 +31,10 @@ def create_short_link(request):
 	form = CreateUrlForm(request.POST)
 	user = request.user
 	if form.is_valid():
-		name = form.name
-		or_url = form.original_url
+		name = form.cleaned_data['name']
+		or_url = form.cleaned_data['original_url']
+		s_link = generate_short_url(str(user), or_url)
+		print(s_link)
 	return render(request, 'create-link.html', {'form': form})
 
 def generate_short_url(username, full_url):
