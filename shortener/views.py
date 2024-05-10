@@ -34,13 +34,22 @@ def create_short_link(request):
 		name = form.cleaned_data['name']
 		or_url = form.cleaned_data['original_url']
 		s_link = generate_short_url(str(user), or_url)
-		print(s_link)
+		new_url = Links(
+			name=name,
+			user=User.objects.first(),
+			original_url=or_url,
+			short_url=s_link,
+		)
+		new_url.save()
+		return redirect('create-link')
 	return render(request, 'create-link.html', {'form': form})
 
 def generate_short_url(username, full_url):
 	hash_str = hashlib.sha256((username + full_url).encode('utf-8')).hexdigest()
 	short_url = ''
+	char_pool = string.digits + string.ascii_letters
 	for i in range(7):
-		short_url += string.digits + string.ascii_letters[int(hash_str[i * 2:i * 2 + 2], 16) % len(string.digits + string.ascii_letters)]
+		index = int(hash_str[i * 2:i * 2 + 2], 16) % len(char_pool)
+		short_url += char_pool[index]
 
 		return short_url
