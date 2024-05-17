@@ -4,6 +4,6 @@
     <ul>
         {% for link in links %}
             <li><a href="{{ link.original_url }}">{{ link.short_url }}</a>Клики: {{ link.clicks_qty }}</li>
-    </ul>
         {% endfor %}
+    </ul>
 {% endblock %}
