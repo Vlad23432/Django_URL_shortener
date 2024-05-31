@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Links, Clicks
+from content.models import Page
 from .forms import CreateUrlForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -10,6 +11,8 @@ import string
 
 
 def redirect_url(request, short_url):
+	if short_url == '':
+		return redirect('content/main/')
 	try:
 		url = Links.objects.get(short_url=short_url)
 	except Links.DoesNotExist:
@@ -41,7 +44,7 @@ def create_short_link(request):
 			short_url=s_link,
 		)
 		new_url.save()
-		return redirect('create-link')
+		return redirect('account')
 	return render(request, 'create-link.html', {'form': form})
 
 def generate_short_url(username, full_url):

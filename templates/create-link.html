@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Создать короткую ссылку</h1>
-    <form action="" method="POST">
+    <h1 class="text-center">Создать короткую ссылку</h1>
+    <form action="" method="POST" class="base-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Создать">
+        <div class="form-group mb-4">
+        {{ form.name }}
+        <hr>
+        {{ form.original_url }}
+        </div>
+        <input type="submit" value="Создать" class="btn btn-primary">
     </form>
 {% endblock %}

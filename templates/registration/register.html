@@ -2,16 +2,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>регистрация</h1>
+    <h1 class="text-center">регистрация</h1>
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
     {% endif %}
-    <form action="" method="POST">
+    <form action="" method="POST" class="base-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Зарегистрироваться">
-        <p>Есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+        <div class="row mb-2">
+            <div class="col">
+                {{ form.username }}
+            </div>
+            <div class="col">
+               {{ form.email }}
+            </div>
+        </div>
+         <p class="text-muted">только латинские и специальные символы и числа</p>
+        <div class="row mb-2">
+            <div class="col">
+                {{ form.password1 }}
+            </div>
+            <div class="col">
+                {{ form.password2 }}
+            </div>
+        </div>
+        <p class="text-muted">не менее 8 символов, одна буква, один спец.символ,одно число</p>
+        <input type="submit" value="Зарегистрироваться" class="btn btn-success">
     </form>
+     <p class="text-muted text-center"> Есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
 {% endblock %}
